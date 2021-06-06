@@ -11,6 +11,7 @@ RUN mkdir /home/cameron/.ssh && curl https://cameronwhyte.me/public-key >> /home
 RUN curl https://raw.githubusercontent.com/Redstoneguy129/lunarvim/master/utils/installer/install.sh >> /home/cameron/nvim-installer.sh
 RUN bash < /home/cameron/nvim-installer.sh
 RUN echo "nvim -u $HOME/.config/nvim/init.lua +PackerInstall -c \"sleep 15 | qa\" && nvim" >> /home/cameron/.bash_aliases
+RUN mkdir /home/cameron/projects
 USER root
 RUN echo 'cameron:root' | chpasswd
 EXPOSE 22
