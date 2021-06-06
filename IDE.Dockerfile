@@ -7,11 +7,10 @@ RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/ssh
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 RUN sed -i 's/#PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
 USER cameron
-RUN mkdir /home/cameron/.ssh && curl https://cameronwhyte.me/public-key >> /home/cameron/.ssh/authorized_keys
+RUN mkdir /home/cameron/.ssh && mkdir /home/cameron/projects && curl https://cameronwhyte.me/public-key >> /home/cameron/.ssh/authorized_keys
 RUN curl https://raw.githubusercontent.com/Redstoneguy129/lunarvim/master/utils/installer/install.sh >> /home/cameron/nvim-installer.sh
 RUN bash < /home/cameron/nvim-installer.sh
 RUN echo "nvim -u $HOME/.config/nvim/init.lua +PackerInstall -c \"sleep 15 | qa\" && nvim" >> /home/cameron/.bash_aliases
-RUN mkdir /home/cameron/projects
 USER root
 RUN echo 'cameron:root' | chpasswd
 EXPOSE 22
