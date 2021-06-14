@@ -8,28 +8,21 @@ services:
       - "2200:22"
     volumes:
       - "/home/cameron/projects:/home/cameron/projects"
-  vpn:
-    image: ghcr.io/linuxserver/wireguard
-    cap_add:
-      - NET_ADMIN
-      - SYS_MODULE
-    ports:
-      - "2201:51820/udp"
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-      - SERVERURL=mail.levsolutionsltd.com
-      - SERVERPORT=2201
-      - PEERS=1
-      - PEERDNS=auto
-      - ALLOWEDIPS=0.0.0.0/0
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
+  share:
+    image: dperson/samba
+    ports:
+      - "139:139"
+      - "445:445"
+    environment:
+      - SHARE=Projects;/mnt/projects;yes;no;yes
+    volumes:
+      - "/home/cameron/projects:/mnt/projects"
   files:
     image: filebrowser/filebrowser
     ports:
       - "2202:80"
     volumes:
-      - "/home/cameron/projects:/srv"
+      - "/home/cameron/projects:/srv/projects"
+      - "/home/cameron/vpn:/srv/vpn"
+    restart: unless-stopped
