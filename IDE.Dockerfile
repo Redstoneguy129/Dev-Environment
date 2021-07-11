@@ -12,7 +12,7 @@ RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/
 RUN sed -i 's/#PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
 RUN pip3 install contextlib2 pynvim pyvim
 USER cameron
-RUN mkdir /home/cameron/.ssh && mkdir /home/cameron/projects && curl https://cameronwhyte.me/public-key >> /home/cameron/.ssh/authorized_keys
+RUN mkdir /home/cameron/.ssh && mkdir /home/cameron/projects && curl https://www.cameronwhyte.me/public-key >> /home/cameron/.ssh/authorized_keys
 RUN curl https://raw.githubusercontent.com/ChristianChiarulli/LunarVim/rolling/utils/installer/install.sh >> /home/cameron/nvim-installer.sh
 RUN bash < /home/cameron/nvim-installer.sh
 RUN rm /home/cameron/nvim-installer.sh
