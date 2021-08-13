@@ -1,6 +1,6 @@
 FROM ubuntu:focal
 RUN ln -snf /usr/share/zoneinfo/Europe/London /etc/localtime && echo Europe/London > /etc/timezone
-RUN apt update && apt install -y sudo openssh-server curl wget git python3-pip nodejs npm ripgrep fzf ranger libjpeg8-dev zlib1g-dev python-dev python3-dev libxtst-dev gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip build-essential vim
+RUN apt update && apt install -y sudo openssh-server curl wget git python3-pip nodejs npm ripgrep fzf ranger libjpeg8-dev zlib1g-dev python-dev python3-dev libxtst-dev gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip build-essential
 RUN curl -fsSL https://get.docker.com -o get-docker.sh
 RUN sh get-docker.sh
 RUN curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
