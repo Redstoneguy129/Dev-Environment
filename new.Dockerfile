@@ -16,7 +16,7 @@ RUN mkdir /home/cameron/.ssh && mkdir /home/cameron/projects && curl https://www
 
 # Install Vim Stuff
 
-RUN echo "export DOCKER_HOST=tcp://192.168.1.173:2375 && vim" >> /home/cameron/.bash_aliases
+RUN echo "export DOCKER_HOST=tcp://192.168.1.173:2375" >> /home/cameron/.bash_aliases
 USER root
 RUN echo 'cameron:root' | chpasswd
 EXPOSE 22
